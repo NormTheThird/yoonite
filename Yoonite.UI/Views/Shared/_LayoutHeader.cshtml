@@ -1,0 +1,66 @@
+﻿<div class="header-wrapper" data-bind="with: MainVM.HeaderVM()">
+    <div class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="navigation-toggle toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="header-logo">
+                    <a href="@Url.Action("Index", "Home")"><img src="~/Content/img/logo.svg" class="svg" alt="Home"></a>
+                    <a href="@Url.Action("Index", "Home")" class="header-title">Yoonite</a>
+                </div>
+
+                <div class="header-nav">
+                    <div class="primary-nav-wrapper">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="nav">
+                                <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link">Home</a></li>
+                                <li class="nav-item"><a href="@Url.Action("Index", "Project")" class="nav-link">Projects</a></li>
+                                <li class="nav-item"><a href="@Url.Action("MyProjects", "Project")" class="nav-link">My Projects</a></li>
+                                <li class="nav-item"><a href="@Url.Action("Index", "User")" class="nav-link">People</a></li>
+                                <li class="nav-item"><a href="@Url.Action("Index", "Questions")" class="nav-link">FAQ's</a></li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="nav">
+                                <li class="nav-item"><a href="@Url.Action("Index", "Project")" class="nav-link">Projects</a></li>
+                                <li class="nav-item"><a href="@Url.Action("Index", "Questions")" class="nav-link">FAQ's</a></li>
+                                <li class="nav-item"><a href="@Url.Action("Index", "Security")" class="nav-link">Login</a></li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="header-toggle toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="header-actions">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <div class="icon-wrapper">
+                                    <a href="@Url.Action("Index", "Message")" title="Message Inbox" class="fa fa-envelope-o fa-2x icon-color-no-alert"></a>
+                                    <span class="badge" data-bind="text: UnreadMessageCount, visible: UnreadMessageCount() > 0" style="display:none"></span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="icon-wrapper">
+                                    <a href="@Url.Action("CreateProject", "Project")" title="Create A New Project" class="fa fa-plus fa-2x icon-create-project"></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

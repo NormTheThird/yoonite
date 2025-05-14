@@ -1,0 +1,165 @@
+﻿<div class="main-wrapper" data-bind="with: CurrentVM()">
+    <div class="main">
+        <div class="main-inner">
+
+            <div class="page-title">
+                <div class="container">
+                    <h1>My Projects</h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <!-- Search, Edit, View project -->
+                    <div class="col-md-6">
+                        <div class="sidebar">
+
+                            <!-- Search -->
+                            <div class="widget">
+                                <h3 class="widgettitle">Search Projects</h3>
+                                <div class="search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                        <input type="text" class="form-control" placeholder="Search name or description" data-bind="value: ProjectFilter, valueUpdate: 'afterkeydown'">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Edit Project-->
+                            <div class="widget" data-bind="visible: IsEditProject()">
+                                <h3 class="widgettitle">Edit Project</h3>
+                                <form id="edit-project-form">
+                                    <div class="row mb-1">
+                                        <div class="input-group col-sm-6">
+                                            <input id="ProjectName" type="text" class="form-control" name="ProjectName" placeholder="Project Name" data-bind="value: ProjectEdit().ProjectName" />
+                                        </div>
+                                        <div class="input-group col-sm-6">
+                                            <input id="CompanyName" type="text" class="form-control" name="CompanyName" placeholder="Company Name" data-bind="value: ProjectEdit().CompanyName" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="input-group col-sm-6">
+                                            <input id="Url" type="text" class="form-control" name="Url" placeholder="Url" data-bind="value: ProjectEdit().Url" />
+                                        </div>
+                                        <div class="input-group col-sm-6">
+                                            <input id="City" type="text" class="form-control" name="City" placeholder="City" data-bind="value: ProjectEdit().City" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="input-group col-sm-6">
+                                            <select id="State" class="form-control" name="State"
+                                                    data-bind="options: BaseModel.States,
+                                                                   optionsValue:'Name',
+                                                                   optionsText: 'Name',
+                                                                   optionsCaption: '',
+                                                                   value: ProjectEdit().State"></select>
+                                        </div>
+                                        <div class="input-group col-sm-6">
+                                            <input id="ZipCode" type="text" class="form-control" name="ZipCode" placeholder="Zip Code" data-bind="value: ProjectEdit().ZipCode" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="input-group col-sm-12">
+                                            <textarea class="form-control" rows="5" placeholder="Please keep your description as simple as possible." data-bind="value: ProjectEdit().Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="input-group col-sm-6">
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" data-bind="checked: ProjectEdit().CanBeRemote">
+                                                <span class="indicator"></span>
+                                            </div>
+                                            <span>Can be remote</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="input-group row m-1" data-bind="foreach: ProjectEditSkills">
+                                            <div class="input-group col-sm-3">
+                                                <div class="checkbox-wrapper">
+                                                    <input type="checkbox" data-bind="checked: Selected" />
+                                                    <span class="indicator"></span>
+                                                </div>
+                                                <span data-bind="text: Name"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1" data-bind="visible: ShowSelectSkillError()">
+                                        <div class="input-group col-sm-12">
+                                            <h4 class="text-danger">Select at least one skill</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-1">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success pull-right" data-bind="click: SaveProject">Save Project</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- View Interested People -->
+                            <div class="widget" data-bind="visible: IsViewInterested()">
+                                <h3 class="widgettitle">Interested People</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- List of projects -->
+                    <div class="col-md-6">
+                        <div data-bind="foreach: OrdersPagination().PaginatedArray">
+                            <div class="listing-row-simple-image">
+                                <div class="listing-row">
+                                    <div class="listing-row-inner">
+                                        <div class="listing-row-content">
+                                            <div class="listing-row-content-header">
+                                                <h3 data-bind="text: ProjectName"></h3>
+                                                <h4 data-bind="visible: CompanyName(), text: CompanyName" placeholder="Unkown"></h4>
+                                                <h4 data-bind="visible: !CompanyName()">No Company Name</h4>
+                                                <div class="actions">
+                                                    <div class="actions-button">
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                    <ul class="actions-list">
+                                                        <li><a href="#" data-bind="click: $parent.EditProject">Edit Project</a></li>
+                                                        @*<li><a href="#" data-bind="click: $parent.ViewInterested">View Interested People</a></li>*@
+                                                        <li><a href="#" data-bind="click: $parent.DeleteProject">Delete Project</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="listing-row-content-meta">
+                                                <div class="listing-row-content-meta-item" data-bind="foreach: ProjectSkills"><span class="tag tag-outline-primary" data-bind="text: Name"></span></div>
+                                            </div>
+                                            <div class="listing-row-content-meta">
+                                                <div class="listing-row-content-meta-item">
+                                                    <span data-bind="html: City() + ', ' + State() + ' ' + ZipCode()"></span>
+                                                    <span data-bind="visible: Url()"> | </span>
+                                                    <a data-bind="attr: { href: Url, target: '_blank' }, text: Url()"></a>
+                                                </div>
+                                            </div>
+                                            <div class="listing-row-content-body" data-bind="visible: Description(), html: Description"></div>
+                                            <div class="listing-row-content-body" data-bind="visible: !Description()">No Description</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @Html.Partial("_PaginationTemplate")
+                        <div data-bind="template: {name: 'PaginationTemplate', data: OrdersPagination}"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new MyProjectViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

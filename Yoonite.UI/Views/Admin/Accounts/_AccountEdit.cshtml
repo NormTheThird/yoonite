@@ -1,0 +1,48 @@
+﻿<div id="admin-account-edit" class="container-fluid" style="display:none">
+    <div class="box">
+        <div class="box-inner">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>First Name</label>
+                    <input id="FirstName" type="text" class="form-control" name="FirstName" data-bind="value: Account().FirstName()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Last Name</label>
+                    <input id="LastName" type="text" class="form-control" name="LastName" data-bind="value: Account().LastName()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>E-mail</label>
+                    <input id="Email" type="text" class="form-control" name="Email" data-bind="value: Account().Email()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Phone Number</label>
+                    <input id="PhoneNumber" type="text" class="form-control" name="PhoneNumber" data-bind="value: Account().PhoneNumber()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Address 1</label>
+                    <input id="Address1" type="text" class="form-control" name="Address1" data-bind="value: Account().Address().Address1()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Address 2</label>
+                    <input id="Address2" type="text" class="form-control" name="Address2" data-bind="value: Account().Address().Address2()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>City</label>
+                    <input id="City" type="text" class="form-control" name="City" data-bind="value: Account().Address().City()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>State</label>
+                    <input id="State" type="text" class="form-control" name="State" data-bind="value: Account().Address().State()">
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>Zip Code</label>
+                    <input id="ZipCode" type="text" class="form-control" name="ZipCode" data-bind="value: Account().Address().ZipCode()">
+                </div>
+                <div class="form-group col-sm-12">
+                    <button type="button" class="btn btn-warning" data-bind="click: CancelChanges">Cancel</button>
+                    <button type="button" class="btn btn-success pull-right">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@using Yoonite.UI.SecurityModels
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+
+    <title>Yoonite</title>
+
+    <link href="~/Content/img/favicon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" />
+
+    @Styles.Render("~/bundles/plugin-styles")
+    @Styles.Render("~/bundles/fonts")
+    @Styles.Render("~/bundles/theme-styles")
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125779782-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-125779782-3');
+    </script>
+
+    <link href="~/Content/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="">
+    <div class="page-wrapper">
+
+        @Html.Partial("_LayoutHeader")
+
+        @RenderBody()
+
+        @*@if (User.Identity.IsAuthenticated)
+        {
+            @Html.Partial("_LayoutFooter")
+        }*@
+
+        @Html.Partial("_LayoutFooter")
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.Partial("_LayoutRightSide")
+    }
+
+    @Scripts.Render("~/bundles/plugin-scripts")
+    @Scripts.Render("~/bundles/theme-scripts")
+    @Scripts.Render("~/bundles/view_models")
+
+    <script type="text/javascript">
+        var MainVM = new MainViewModel('@User.Identity.IsAuthenticated');
+        ko.applyBindings(MainVM);
+    </script>
+
+    @RenderSection("scripts", false)
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿<div id="message-list" style="display:none">
+
+    <div class="page-title">
+        <div class="container">
+            <h1>Messages</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Message Main -->
+            <div class="col-sm-4 col-md-3">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h3 class="widgettitle">Search Messages</h3>
+                        <div class="search">
+                            <form method="get" action="?">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    <input type="text" class="form-control" placeholder="Search by name, subject, or message " data-bind="value: MessageFilter, valueUpdate: 'afterkeydown'">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List of messages -->
+            <div class="col-sm-8 col-md-9">
+                <div class="content">
+                    <div class="table-header clearfix">
+                        <div class="table-header-count">
+                            <strong data-bind="text: Messages().length"></strong> messages
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="table-wrapper">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>New</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: MessagesPagination().PaginatedArray">
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-check" style="color: red" data-bind="visible: UnRead()"></i>
+                                        </td>
+                                        <td class="no-wrap" data-bind="text: MessageFrom()"></td>
+                                        <td class="no-wrap" data-bind="text: MessageTo()"></td>
+                                        <td data-bind="text: ShortSubject()"></td>
+                                        <td data-bind="text: ShortMessage()"></td>
+                                        <td data-bind="text: DateCreated()"></td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#" data-bind="click: $parent.ViewMessageDetails">View Message Details</a>
+                                                    <a class="dropdown-item" href="#" data-bind="click: $parent.DeleteMessage">Delete Message</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.Partial("_PaginationTemplate")
+                            <div data-bind="template: {name: 'PaginationTemplate', data: MessagesPagination}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

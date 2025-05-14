@@ -1,0 +1,88 @@
+﻿label.error {
+    color: #ff0000;
+}
+
+textarea.error,
+select.error,
+input.error {
+    border: 2px solid red !important;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+.dropzone {
+    font-size: 36px;
+    color: var(--primary);
+    height: 240px;
+    margin-bottom: 20px;
+    border: 2px dashed var(--primary);
+}
+
+    .dropzone .dz-message {
+        text-align: center;
+        margin: 2em 0;
+        margin: 40px 0;
+    }
+
+        .dropzone .dz-message p {
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+.icon-create-project {
+    margin: 2px 0 0 5px !important;
+}
+
+.profile-image {
+    height: 240px;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.login-logo {
+    margin: 80px 0 40px 0;
+}
+
+    .login-logo svg {
+        width: 34px;
+    }
+
+    .login-logo svg {
+        margin: 0 10px 0 0;
+    }
+
+        .login-logo svg #logo-background {
+            fill: var(--primary);
+        }
+
+        .login-logo svg #Triangle-4 {
+            fill: var(--primary);
+        }
+
+    .login-logo a {
+        color: var(--primary) !important;
+        text-decoration: none;
+        vertical-align: 10px
+    }

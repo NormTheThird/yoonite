@@ -1,0 +1,30 @@
+﻿@using Yoonite.UI.SecurityModels
+
+<div class="side-wrapper">
+    <div class="side">
+        <div class="side-inner">
+            <div class="side-user" style="background-color: var(--secondary);">
+                <span class="side-user-avatar-name">
+                    <strong>@User.Identity.Name</strong>
+                </span>
+            </div>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a href="@Url.Action("MyProfile", "Account")" class="nav-link">My Profile</a></li>
+                @*<li class="nav-item"><a href="@Url.Action("Index", "Message")" class="nav-link">Messages</a></li>*@
+                @*<li class="nav-item">
+                    <a href="@Url.Action("MyProjects", "Project")" class="nav-link pull-left">My Projects</a>
+                    <a href="@Url.Action("CreateProject", "Project")" class="btn btn-outline-light m-1 pull-right">Create A Project</a>
+                </li>*@
+
+                @if (CustomPrincipal.IsSystemAdmin())
+                {
+                    <li class="nav-item"><a href="@Url.Action("Index", "Admin")" class="nav-link">Admin</a></li>
+                }
+
+                <li class="nav-item"><a href="@Url.Action("Logout", "Security")" class="nav-link">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="side-overlay"></div>

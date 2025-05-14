@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="admin-page-title">
+    <div class="container-fluid">
+        <h1>Accounts</h1>
+    </div>
+</div>
+
+<div class="admin-content" data-bind="with: CurrentVM()">
+    @Html.Partial("Accounts/_AccountList")
+    @Html.Partial("Accounts/_AccountEdit")
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new AdminAccountViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

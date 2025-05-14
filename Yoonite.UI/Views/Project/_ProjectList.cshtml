@@ -1,0 +1,85 @@
+﻿<div id="project-list" style="display:none">
+
+    <div class="page-title">
+        <div class="container">
+            <h1>Projects</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Search -->
+            <div class="col-sm-4 col-md-3">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h3 class="widgettitle">Search Projects</h3>
+                        <div class="search">
+                            <form method="get" action="?">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    <input type="text" placeholder="Search by name, skill, city or state..." class="form-control" data-bind="value: ProjectsFilter, valueUpdate: 'afterkeydown'">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List of projects -->
+            <div class="col-sm-8 col-md-9">
+                <div class="content">
+                    <div class="row" data-bind="foreach: ProjectsPagination().PaginatedArray">
+                        <div class="col-md- col-md-6">
+                            <div class="listing-row">
+                                <div class="listing-row-inner">
+                                    @*<a href="#" class="listing-row-image listing-row-image-simple" data-bind="click: $parent.GetProjectDetail">
+                                                <span class="listing-row-image-content" style="background-image: url(Content/img/placeholder.png);"></span>
+                                        </a>*@
+                                    <div class="listing-row-content">
+                                        <div class="listing-row-content-header">
+                                            <h2><a href="#" data-bind="text: ProjectName, click: $parent.GetProjectDetail"></a></h2>
+                                            <h3 data-bind="text: CompanyName"></h3>
+                                            <h4 data-bind="text: CityStateDisplay"></h4>
+                                            <h4 class="mt-2"><a data-bind="attr: { href: Url, target: '_blank' }, text: Url()"></a></h4>
+                                            <div class="actions">
+                                                <div class="actions-button">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </div>
+                                                <ul class="actions-list">
+                                                    <li><a href="#" data-bind="click: $parent.GetProjectDetail">View Project Details</a></li>
+                                                    @*<li><a href="#">Add to favorites</a></li>
+                                                        <li><a href="#">Report listing</a></li>*@
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="listing-row-content-meta" data-bind="foreach: ProjectSkills">
+                                            <span class="tag tag-outline-primary" data-bind="text: Name"></span>
+                                        </div>
+
+                                        <div class="listing-row-content-body">
+                                            <span data-bind="text: Description"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.Partial("_PaginationTemplate")
+                            <div data-bind="template: {name: 'PaginationTemplate', data: ProjectsPagination}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

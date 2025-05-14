@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="admin-page-title">
+    <div class="container-fluid">
+        <h1>Skills</h1>
+    </div>
+</div>
+
+<div class="admin-content" data-bind="with: CurrentVM()">
+    @Html.Partial("Skills/_SkillList")
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new AdminSkillViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

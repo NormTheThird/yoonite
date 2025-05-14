@@ -1,0 +1,48 @@
+﻿<div id="security-register" class="container" style="display: none">
+    <div class="row mt80">
+        <div class="col-md-6 offset-md-3">
+            <div class="row login-logo">
+                <div style="margin: auto">
+                    <img src="~/Content/img/logo.svg" class="svg" alt="Home" />
+                    <a href="@Url.Action("Index", "Home")" class="header-title">Yoonite</a>
+                </div>
+            </div>
+            <h3 class="page-title-small mt80">Register - or - <a href="#" class="text-info" data-bind="click: ShowLogin">Login</a></h3>
+            <form id="registration-form">
+                <div class="form-group">
+                    <h4 class="text-danger text-center" data-bind="text: ErrorMessage"></h4>
+                </div>
+                <div class="form-group">
+                    <label for="FirstName">First Name</label>
+                    <input id="FirstName" type="text" class="form-control" name="FirstName" data-bind="value: FirstName, valueUpdate: 'afterkeydown'">
+                </div>
+                <div class="form-group">
+                    <label for="LastName">Last Name</label>
+                    <input id="LastName" type="text" class="form-control" name="LastName" data-bind="value: LastName, valueUpdate: 'afterkeydown'">
+                </div>
+                <div class="form-group">
+                    <label for="Email">E-mail</label>
+                    <input id="Email" type="email" class="form-control" name="Email" data-bind="value: Email, valueUpdate: 'afterkeydown'">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input id="Password" type="password" class="form-control" name="Password" data-bind="value: Password, valueUpdate: 'afterkeydown'">
+                </div>
+                <div class="center mb80">
+                    <div class="checkbox mb30">
+                        <label>
+                            <input type="checkbox" name="Agree"> By signing up, you agree with the <a style="color: blue" target="_blank" href="@Url.Action("TermsConditions", "Legal")">terms and conditions</a>.
+                        </label>
+                        <span id="validationError" />
+                    </div>
+                    <div class="form-group-btn">
+                        <button type="submit" class="btn btn-primary pull-right" data-bind="visible: !IsSubmitting(), click: RegisterAccount">Create Account</button>
+                        <button type="button" class="btn btn-white pull-right" data-bind="visible: IsSubmitting()">
+                            <span class="glyphicon glyphicon-refresh spinning"></span> Loading ...
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

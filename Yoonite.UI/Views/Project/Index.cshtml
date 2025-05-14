@@ -1,0 +1,18 @@
+﻿<div class="main-wrapper" data-bind="with: CurrentVM()">
+    <div class="main">
+        <div class="main-inner">
+
+            @Html.Partial("_ProjectDetail")
+            @Html.Partial("_ProjectList")
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new ProjectViewModel());
+        MainVM.CurrentVM().Load('@User.Identity.IsAuthenticated');
+    </script>
+}

@@ -1,0 +1,52 @@
+﻿<script>
+    function PaginationVM(input, perPage) {
+        var self = this;
+        self.InputArray = input;
+        self.PerPage = ko.observable(perPage);
+        self.Page = ko.observable(1);
+
+        self.PageTotal = ko.computed(function () {
+            var totalPages = Math.ceil(self.InputArray().length / parseInt(self.PerPage()));
+            if (self.Page() > totalPages && totalPages > 0) { self.Page(totalPages); }
+            return totalPages;
+        })
+
+        self.PaginatedArray = ko.computed(function () {
+            var perPage = parseInt(self.PerPage())
+            var start = self.Page() * perPage - perPage;
+            return self.InputArray().slice(start, start + perPage);
+        })
+
+        self.ChangePageBy = function (offset) {
+            return function () {
+                self.Page(self.Page() + offset);
+            }
+        }
+
+        self.ChangePageTo = function (newPage) {
+            return function () {
+                switch (newPage) {
+                    case "first": self.Page(1); break;
+                    case "previous": self.Page(self.Page() - 1); break;
+                    case "next": self.Page(self.Page() + 1); break;
+                    case "last": self.Page(self.PageTotal()); break;
+                    default: self.Page(newPage);
+                }
+            }
+        }
+    }
+</script>
+
+<script type="text/html" id="PaginationTemplate">
+    <nav class="text-center" aria-label="Page navigation">
+        <ul class="pagination pull-right">
+            <li class="page-item" data-bind="css:{disabled: Page() <= 1}"><a class="page-link" href="#" data-bind="click: ChangePageTo('previous')">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#" data-bind="text: Page() -2, click: ChangePageBy(-2), visible: Page() > 2"></a></li>
+            <li class="page-item"><a class="page-link" href="#" data-bind="text: Page() -1, click: ChangePageBy(-1), visible: Page() > 1"></a></li>
+            <li class="page-item active"><a class="page-link" href="#" data-bind="text: Page()"></a></li>
+            <li class="page-item"><a class="page-link" href="#" data-bind="text: Page() +1, click: ChangePageBy(1), visible: (PageTotal() > Page() +0)"></a></li>
+            <li class="page-item"><a class="page-link" href="#" data-bind="text: Page() +2, click: ChangePageBy(2), visible: (PageTotal() > Page() +1)"></a></li>
+            <li class="page-item" data-bind="css: {disabled: (PageTotal() < Page() +1)}"><a class="page-link" href="#" data-bind="click: ChangePageTo('next')">Next</a></li>
+        </ul>
+    </nav>
+</script>

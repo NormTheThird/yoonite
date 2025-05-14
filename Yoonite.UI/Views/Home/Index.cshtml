@@ -1,0 +1,37 @@
+﻿<div id="home" data-bind="with: CurrentVM">
+
+    <div class="hero-carousel" style="background-image: url('Content/img/passion.jpg')"></div>
+
+    <div class="main-wrapper">
+        <div class="main">
+            <div class="main-inner">
+
+                <div class="container p-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 m-2 m-md-0">
+                            <a href="@Url.Action("Index", "User")" class="btn btn-block btn-outline-secondary p-3">
+                                <span class="fa fa-search fa-2x va-middle"> I'm Looking For Skills</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-12 col-md-6 m-2 m-md-0">
+                            <a href="@Url.Action("Index", "Project")" class="btn btn-block btn-outline-primary p-3">
+                                <span class="fa fa-wrench fa-2x va-middle"> I Have Skills</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                @Html.Partial("_ContactUs")
+                @Html.Partial("_Donate")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new HomeViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

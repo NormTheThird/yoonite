@@ -1,0 +1,109 @@
+﻿<div class="main-wrapper" data-bind="with: CurrentVM()">
+    <div class="main">
+        <div class="main-inner">
+
+            <div class="page-title">
+                <div class="container">
+                    <h1>
+                        Create A Project
+                    </h1>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="listing-detail col-sm-12">
+                        <div class="box">
+                            <div class="box-inner">
+                                <div class="box-title">
+                                    <h2>Project Details</h2>
+                                </div>
+
+                                <form id="create-project-form">
+                                    <div class="row">
+                                        <div class="form-group col-sm-4">
+                                            <label>Project Name *</label>
+                                            <input id="ProjectName" type="text" class="form-control" name="ProjectName" data-bind="value: Project().ProjectName">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label>Company Name (optional)</label>
+                                            <input id="CompanyName" type="text" class="form-control" name="CompanyName" data-bind="value: Project().CompanyName">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label>Url (website or repository)</label>
+                                            <input id="Url" type="text" class="form-control" name="Url" data-bind="value: Project().Url">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4">
+                                            <label>City *</label>
+                                            <input id="City" type="text" class="form-control" name="City" data-bind="value: Project().City">
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label>State *</label>
+                                            <select id="State" class="form-control" name="State"
+                                                    data-bind="options: BaseModel.States,
+                                                                   optionsValue:'Name',
+                                                                   optionsText: 'Name',
+                                                                   optionsCaption: '',
+                                                                   value: Project().State"></select>
+                                        </div>
+                                        <div class="form-group col-sm-4">
+                                            <label>Zip Code *</label>
+                                            <input id="ZipCode" type="text" class="form-control" name="ZipCode" data-bind="value: Project().ZipCode">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            <label>Description (optional)</label>
+                                            <textarea class="form-control" rows="3" placeholder="Please keep your description as simple as possible." data-bind="value: Project().Description"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-2">
+                                            <div class="checkbox-wrapper">
+                                                <input type="checkbox" data-bind="checked: Project().CanBeRemote">
+                                                <span class="indicator"></span>
+                                            </div>
+                                            <span>Can be remote</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12 mt-2">
+                                            <label>Skills Needed *</label>
+                                            <h4 class="text-danger" data-bind="visible: ShowSelectSkillError()">Select at least one skill</h4>
+                                        </div>
+
+                                        <div class="form-group row m-1" data-bind="foreach: Skills">
+                                            <div class="form-group col-sm-2">
+                                                <div class="checkbox-wrapper">
+                                                    <input type="checkbox" data-bind="checked: Selected" />
+                                                    <span class="indicator"></span>
+                                                </div>
+                                                <span data-bind="text: Name"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group-btn">
+                                                <button class="btn btn-outline-primary pull-right" data-bind="click: CreateProject">Create Project</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new CreateProjectViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

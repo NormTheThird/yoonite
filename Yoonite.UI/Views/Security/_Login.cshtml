@@ -1,0 +1,33 @@
+﻿<div id="security-login" class="container" style="display: none">
+    <div class="row mt80">
+        <div class="col-sm-4 offset-sm-4">
+            <div class="row login-logo">
+                <div style="margin: auto">
+                    <img src="~/Content/img/logo.svg" class="svg" alt="Home" />
+                    <a href="@Url.Action("Index", "Home")" class="header-title">Yoonite</a>
+                </div>
+            </div>
+            <h3 class="page-title-small">Login - or - <a href="#" class="text-info" data-bind="click: ShowRegisterAccount">Register</a></h3>
+            <form>
+                <div class="form-group">
+                    <h4 class="text-danger text-center" data-bind="text: ErrorMessage"></h4>
+                </div>
+                <div class="form-group">
+                    <label for="login-form-email">E-mail</label>
+                    <input id="login-form-email" type="email" class="form-control" name="email" data-bind="value: Email">
+                </div>
+                <div class="form-group">
+                    <label for="login-form-password">Password</label>
+                    <input id="login-form-password" type="password" class="form-control" name="password" data-bind="value: Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" data-bind="visible: !IsSubmitting(), click: ValidateAccount">Login</button>
+                    <button type="button" class="btn btn-white" data-bind="visible: IsSubmitting()">
+                        <span class="glyphicon glyphicon-refresh spinning"></span> Loading ...
+                    </button>
+                    <a href="#" class="text-info pull-right" data-bind="click: ShowForgotPassword">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

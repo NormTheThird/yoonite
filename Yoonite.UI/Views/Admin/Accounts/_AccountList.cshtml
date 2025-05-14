@@ -1,0 +1,53 @@
+﻿<div id="admin-account-list" class="container-fluid" style="display:none">
+    <div class="box">
+        <div class="box-inner">
+            <div class="table-wrapper">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="min-width no-wrap">ID</th>
+                            <th>Name</th>
+                            <th class="min-width no-wrap">Email</th>
+                            <th class="min-width no-wrap">Phone</th>
+                            <th class="min-width center">Active</th>
+                            <th class="min-width no-wrap">Date Created</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: Accounts()">
+                        <tr>
+                            <td class="min-width no-wrap" data-bind="text: Id" />
+                            <td data-bind="text: FullName" />
+                            <td class="min-width" data-bind="text: Email" />
+                            <td class="min-width no-wrap" data-bind="text: PhoneNumber.PhoneMask()" />
+                            <td class="min-width center status">
+                                <i class="fa fa-check" data-bind="visible: IsActive()"></i>
+                                <i class="fa fa-times" data-bind="visible: !IsActive()"></i>
+                            </td>
+                            <td class="min-width no-wrap" data-bind="text: DateCreated" />
+                            <td class="min-width">
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#" data-bind="click: $parent.EditAccount">Edit Account</a>
+                                        <a class="dropdown-item" href="#" data-bind="click: $parent.ChangeAccountStatus">Change Status</a>
+                                        @*<a class="dropdown-item" href="#">Delete Account</a>*@
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*<ul class="pagination pull-right">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>*@
+</div>

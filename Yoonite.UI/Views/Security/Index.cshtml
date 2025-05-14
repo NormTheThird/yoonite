@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="main" data-bind="with: CurrentVM()">
+    <div class="main-inner">
+        @Html.Partial("_ForgotPassword")
+        @Html.Partial("_Login")
+        @Html.Partial("_Register")
+        @Html.Partial("_ResetPassword")
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new SecurityViewModel());
+        MainVM.CurrentVM().Load('@ViewBag.ResetId');
+    </script>
+}

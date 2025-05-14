@@ -1,0 +1,1122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YooniteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AddressId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProfileImageStorageId" Type="uniqueidentifier" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="AltPhoneNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacebookUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TwitterUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LinkedInUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="InstagramUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="WebsiteUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="RefreshTokenMinutes" Type="int" Nullable="false" />
+          <Property Name="Password" Type="binary" MaxLength="64" />
+          <Property Name="IsSystemAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="2" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountRefreshToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RefreshToken" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProtectedTicket" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateIssued" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="DateExpired" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountSettingCrossLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SettingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountSkillCrossLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SkillId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Precision="10" Scale="8" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="11" Scale="8" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="ValidFrom" Type="datetime2" Precision="2" Nullable="false" />
+          <Property Name="ValidTo" Type="datetime2" Precision="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReviewedByAccountId" Type="uniqueidentifier" />
+          <Property Name="HResult" Type="int" Nullable="false" />
+          <Property Name="Source" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExceptionType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ExceptionMessage" Type="varchar" MaxLength="3000" Nullable="false" />
+          <Property Name="InnerExceptionMessage" Type="varchar" MaxLength="3000" Nullable="false" />
+          <Property Name="StackTrace" Type="varchar" MaxLength="3000" Nullable="false" />
+          <Property Name="Parameters" Type="varchar" MaxLength="3000" Nullable="false" />
+          <Property Name="IsReviewed" Type="bit" Nullable="false" />
+          <Property Name="ReviewedComments" Type="varchar" MaxLength="3000" Nullable="false" />
+          <Property Name="DateReviwed" Type="datetimeoffset" Precision="7" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FromAccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ToAccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="UnRead" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PasswordReset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProjectImageStorageId" Type="uniqueidentifier" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="CanBeRemote" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectSkillCrossLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProjectId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SkillId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AzureStorageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MimeType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FileSizeInBytes" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_Address">
+          <End Role="Address" Type="Self.Address" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_ProfileImageStorage">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="0..1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="ProfileImageStorageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountRefreshToken_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="AccountRefreshToken" Type="Self.AccountRefreshToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountRefreshToken">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSettingCrossLink_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="AccountSettingCrossLink" Type="Self.AccountSettingCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSettingCrossLink">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSettingCrossLink_Setting">
+          <End Role="Setting" Type="Self.Setting" Multiplicity="1" />
+          <End Role="AccountSettingCrossLink" Type="Self.AccountSettingCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Setting">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSettingCrossLink">
+              <PropertyRef Name="SettingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSkillCrossLink_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="AccountSkillCrossLink" Type="Self.AccountSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSkillCrossLink">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSkillCrossLink_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+          <End Role="AccountSkillCrossLink" Type="Self.AccountSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSkillCrossLink">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ErrorLog_ReviewedByAccount">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="ErrorLog" Type="Self.ErrorLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorLog">
+              <PropertyRef Name="ReviewedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_FromAccount">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="FromAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_ParentMessage">
+          <End Role="Message" Type="Self.Message" Multiplicity="1" />
+          <End Role="Message1" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_ToAccount">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ToAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PasswordReset_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="PasswordReset" Type="Self.PasswordReset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PasswordReset">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_AccountId">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectSkillCrossLink_Account">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectSkillCrossLink" Type="Self.ProjectSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectSkillCrossLink">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectSkillCrossLink_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1" />
+          <End Role="ProjectSkillCrossLink" Type="Self.ProjectSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectSkillCrossLink">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YooniteModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountRefreshToken" EntityType="Self.AccountRefreshToken" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountSettingCrossLink" EntityType="Self.AccountSettingCrossLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountSkillCrossLink" EntityType="Self.AccountSkillCrossLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorLog" EntityType="Self.ErrorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PasswordReset" EntityType="Self.PasswordReset" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectSkillCrossLink" EntityType="Self.ProjectSkillCrossLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Address" Association="Self.FK_Account_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_ProfileImageStorage" Association="Self.FK_Account_ProfileImageStorage">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountRefreshToken_Account" Association="Self.FK_AccountRefreshToken_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountRefreshToken" EntitySet="AccountRefreshToken" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSettingCrossLink_Account" Association="Self.FK_AccountSettingCrossLink_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountSettingCrossLink" EntitySet="AccountSettingCrossLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSettingCrossLink_Setting" Association="Self.FK_AccountSettingCrossLink_Setting">
+            <End Role="Setting" EntitySet="Setting" />
+            <End Role="AccountSettingCrossLink" EntitySet="AccountSettingCrossLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSkillCrossLink_Account" Association="Self.FK_AccountSkillCrossLink_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountSkillCrossLink" EntitySet="AccountSkillCrossLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSkillCrossLink_Skill" Association="Self.FK_AccountSkillCrossLink_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="AccountSkillCrossLink" EntitySet="AccountSkillCrossLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ErrorLog_ReviewedByAccount" Association="Self.FK_ErrorLog_ReviewedByAccount">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="ErrorLog" EntitySet="ErrorLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_FromAccount" Association="Self.FK_Message_FromAccount">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_ParentMessage" Association="Self.FK_Message_ParentMessage">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="Message1" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_ToAccount" Association="Self.FK_Message_ToAccount">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PasswordReset_Account" Association="Self.FK_PasswordReset_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="PasswordReset" EntitySet="PasswordReset" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_AccountId" Association="Self.FK_Project_AccountId">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectSkillCrossLink_Account" Association="Self.FK_ProjectSkillCrossLink_Account">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectSkillCrossLink" EntitySet="ProjectSkillCrossLink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectSkillCrossLink_Skill" Association="Self.FK_ProjectSkillCrossLink_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="ProjectSkillCrossLink" EntitySet="ProjectSkillCrossLink" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YooniteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="YooniteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="YooniteModel.Account" />
+          <EntitySet Name="AccountRefreshTokens" EntityType="YooniteModel.AccountRefreshToken" />
+          <EntitySet Name="AccountSettingCrossLinks" EntityType="YooniteModel.AccountSettingCrossLink" />
+          <EntitySet Name="AccountSkillCrossLinks" EntityType="YooniteModel.AccountSkillCrossLink" />
+          <EntitySet Name="Addresses" EntityType="YooniteModel.Address" />
+          <EntitySet Name="ErrorLogs" EntityType="YooniteModel.ErrorLog" />
+          <EntitySet Name="Messages" EntityType="YooniteModel.Message" />
+          <EntitySet Name="PasswordResets" EntityType="YooniteModel.PasswordReset" />
+          <EntitySet Name="Projects" EntityType="YooniteModel.Project" />
+          <EntitySet Name="ProjectSkillCrossLinks" EntityType="YooniteModel.ProjectSkillCrossLink" />
+          <EntitySet Name="Settings" EntityType="YooniteModel.Setting" />
+          <EntitySet Name="Skills" EntityType="YooniteModel.Skill" />
+          <EntitySet Name="Storages" EntityType="YooniteModel.Storage" />
+          <AssociationSet Name="FK_Account_Address" Association="YooniteModel.FK_Account_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_ProfileImageStorage" Association="YooniteModel.FK_Account_ProfileImageStorage">
+            <End Role="Storage" EntitySet="Storages" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountRefreshToken_Account" Association="YooniteModel.FK_AccountRefreshToken_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountRefreshToken" EntitySet="AccountRefreshTokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSettingCrossLink_Account" Association="YooniteModel.FK_AccountSettingCrossLink_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountSettingCrossLink" EntitySet="AccountSettingCrossLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSkillCrossLink_Account" Association="YooniteModel.FK_AccountSkillCrossLink_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountSkillCrossLink" EntitySet="AccountSkillCrossLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ErrorLog_ReviewedByAccount" Association="YooniteModel.FK_ErrorLog_ReviewedByAccount">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="ErrorLog" EntitySet="ErrorLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_FromAccount" Association="YooniteModel.FK_Message_FromAccount">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_ToAccount" Association="YooniteModel.FK_Message_ToAccount">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PasswordReset_Account" Association="YooniteModel.FK_PasswordReset_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="PasswordReset" EntitySet="PasswordResets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_AccountId" Association="YooniteModel.FK_Project_AccountId">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSettingCrossLink_Setting" Association="YooniteModel.FK_AccountSettingCrossLink_Setting">
+            <End Role="Setting" EntitySet="Settings" />
+            <End Role="AccountSettingCrossLink" EntitySet="AccountSettingCrossLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSkillCrossLink_Skill" Association="YooniteModel.FK_AccountSkillCrossLink_Skill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="AccountSkillCrossLink" EntitySet="AccountSkillCrossLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_ParentMessage" Association="YooniteModel.FK_Message_ParentMessage">
+            <End Role="Message" EntitySet="Messages" />
+            <End Role="Message1" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectSkillCrossLink_Account" Association="YooniteModel.FK_ProjectSkillCrossLink_Account">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectSkillCrossLink" EntitySet="ProjectSkillCrossLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectSkillCrossLink_Skill" Association="YooniteModel.FK_ProjectSkillCrossLink_Skill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="ProjectSkillCrossLink" EntitySet="ProjectSkillCrossLinks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AddressId" Type="Guid" Nullable="false" />
+          <Property Name="ProfileImageStorageId" Type="Guid" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AltPhoneNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="FacebookUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TwitterUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedInUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="InstagramUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WebsiteUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Bio" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="RefreshTokenMinutes" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="Binary" MaxLength="64" FixedLength="true" />
+          <Property Name="IsSystemAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="2" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="2" />
+          <NavigationProperty Name="Address" Relationship="YooniteModel.FK_Account_Address" FromRole="Account" ToRole="Address" />
+          <NavigationProperty Name="Storage" Relationship="YooniteModel.FK_Account_ProfileImageStorage" FromRole="Account" ToRole="Storage" />
+          <NavigationProperty Name="AccountRefreshTokens" Relationship="YooniteModel.FK_AccountRefreshToken_Account" FromRole="Account" ToRole="AccountRefreshToken" />
+          <NavigationProperty Name="AccountSettingCrossLinks" Relationship="YooniteModel.FK_AccountSettingCrossLink_Account" FromRole="Account" ToRole="AccountSettingCrossLink" />
+          <NavigationProperty Name="AccountSkillCrossLinks" Relationship="YooniteModel.FK_AccountSkillCrossLink_Account" FromRole="Account" ToRole="AccountSkillCrossLink" />
+          <NavigationProperty Name="ErrorLogs" Relationship="YooniteModel.FK_ErrorLog_ReviewedByAccount" FromRole="Account" ToRole="ErrorLog" />
+          <NavigationProperty Name="Messages" Relationship="YooniteModel.FK_Message_FromAccount" FromRole="Account" ToRole="Message" />
+          <NavigationProperty Name="Messages1" Relationship="YooniteModel.FK_Message_ToAccount" FromRole="Account" ToRole="Message" />
+          <NavigationProperty Name="PasswordResets" Relationship="YooniteModel.FK_PasswordReset_Account" FromRole="Account" ToRole="PasswordReset" />
+          <NavigationProperty Name="Projects" Relationship="YooniteModel.FK_Project_AccountId" FromRole="Account" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="AccountRefreshToken">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="RefreshToken" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProtectedTicket" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateIssued" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="DateExpired" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_AccountRefreshToken_Account" FromRole="AccountRefreshToken" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="AccountSettingCrossLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="SettingId" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_AccountSettingCrossLink_Account" FromRole="AccountSettingCrossLink" ToRole="Account" />
+          <NavigationProperty Name="Setting" Relationship="YooniteModel.FK_AccountSettingCrossLink_Setting" FromRole="AccountSettingCrossLink" ToRole="Setting" />
+        </EntityType>
+        <EntityType Name="AccountSkillCrossLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="SkillId" Type="Guid" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_AccountSkillCrossLink_Account" FromRole="AccountSkillCrossLink" ToRole="Account" />
+          <NavigationProperty Name="Skill" Relationship="YooniteModel.FK_AccountSkillCrossLink_Skill" FromRole="AccountSkillCrossLink" ToRole="Skill" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="10" Scale="8" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="11" Scale="8" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="ValidFrom" Type="DateTime" Nullable="false" Precision="2" />
+          <Property Name="ValidTo" Type="DateTime" Nullable="false" Precision="2" />
+          <NavigationProperty Name="Accounts" Relationship="YooniteModel.FK_Account_Address" FromRole="Address" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="ErrorLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ReviewedByAccountId" Type="Guid" />
+          <Property Name="HResult" Type="Int32" Nullable="false" />
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExceptionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExceptionMessage" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="InnerExceptionMessage" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Parameters" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="IsReviewed" Type="Boolean" Nullable="false" />
+          <Property Name="ReviewedComments" Type="String" Nullable="false" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="DateReviwed" Type="DateTimeOffset" Precision="7" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_ErrorLog_ReviewedByAccount" FromRole="ErrorLog" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ParentId" Type="Guid" Nullable="false" />
+          <Property Name="FromAccountId" Type="Guid" Nullable="false" />
+          <Property Name="ToAccountId" Type="Guid" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Message1" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="UnRead" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_Message_FromAccount" FromRole="Message" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="YooniteModel.FK_Message_ToAccount" FromRole="Message" ToRole="Account" />
+          <NavigationProperty Name="Message11" Relationship="YooniteModel.FK_Message_ParentMessage" FromRole="Message" ToRole="Message1" />
+          <NavigationProperty Name="Message2" Relationship="YooniteModel.FK_Message_ParentMessage" FromRole="Message1" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="PasswordReset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_PasswordReset_Account" FromRole="PasswordReset" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="ProjectImageStorageId" Type="Guid" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CanBeRemote" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="YooniteModel.FK_Project_AccountId" FromRole="Project" ToRole="Account" />
+          <NavigationProperty Name="ProjectSkillCrossLinks" Relationship="YooniteModel.FK_ProjectSkillCrossLink_Account" FromRole="Project" ToRole="ProjectSkillCrossLink" />
+        </EntityType>
+        <EntityType Name="ProjectSkillCrossLink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProjectId" Type="Guid" Nullable="false" />
+          <Property Name="SkillId" Type="Guid" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Project" Relationship="YooniteModel.FK_ProjectSkillCrossLink_Account" FromRole="ProjectSkillCrossLink" ToRole="Project" />
+          <NavigationProperty Name="Skill" Relationship="YooniteModel.FK_ProjectSkillCrossLink_Skill" FromRole="ProjectSkillCrossLink" ToRole="Skill" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AccountSettingCrossLinks" Relationship="YooniteModel.FK_AccountSettingCrossLink_Setting" FromRole="Setting" ToRole="AccountSettingCrossLink" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AccountSkillCrossLinks" Relationship="YooniteModel.FK_AccountSkillCrossLink_Skill" FromRole="Skill" ToRole="AccountSkillCrossLink" />
+          <NavigationProperty Name="ProjectSkillCrossLinks" Relationship="YooniteModel.FK_ProjectSkillCrossLink_Skill" FromRole="Skill" ToRole="ProjectSkillCrossLink" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AzureStorageId" Type="Guid" Nullable="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MimeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileSizeInBytes" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="YooniteModel.FK_Account_ProfileImageStorage" FromRole="Storage" ToRole="Account" />
+        </EntityType>
+        <Association Name="FK_Account_Address">
+          <End Type="YooniteModel.Address" Role="Address" Multiplicity="1" />
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_ProfileImageStorage">
+          <End Type="YooniteModel.Storage" Role="Storage" Multiplicity="0..1" />
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="ProfileImageStorageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountRefreshToken_Account">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.AccountRefreshToken" Role="AccountRefreshToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountRefreshToken">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSettingCrossLink_Account">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.AccountSettingCrossLink" Role="AccountSettingCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSettingCrossLink">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSkillCrossLink_Account">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.AccountSkillCrossLink" Role="AccountSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSkillCrossLink">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ErrorLog_ReviewedByAccount">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="YooniteModel.ErrorLog" Role="ErrorLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ErrorLog">
+              <PropertyRef Name="ReviewedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_FromAccount">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="FromAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_ToAccount">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="ToAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PasswordReset_Account">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.PasswordReset" Role="PasswordReset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PasswordReset">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_AccountId">
+          <End Type="YooniteModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="YooniteModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSettingCrossLink_Setting">
+          <End Type="YooniteModel.Setting" Role="Setting" Multiplicity="1" />
+          <End Type="YooniteModel.AccountSettingCrossLink" Role="AccountSettingCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Setting">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSettingCrossLink">
+              <PropertyRef Name="SettingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSkillCrossLink_Skill">
+          <End Type="YooniteModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="YooniteModel.AccountSkillCrossLink" Role="AccountSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountSkillCrossLink">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_ParentMessage">
+          <End Type="YooniteModel.Message" Role="Message" Multiplicity="1" />
+          <End Type="YooniteModel.Message" Role="Message1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectSkillCrossLink_Account">
+          <End Type="YooniteModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="YooniteModel.ProjectSkillCrossLink" Role="ProjectSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectSkillCrossLink">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectSkillCrossLink_Skill">
+          <End Type="YooniteModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="YooniteModel.ProjectSkillCrossLink" Role="ProjectSkillCrossLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectSkillCrossLink">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YooniteModelStoreContainer" CdmEntityContainer="YooniteEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="YooniteModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsSystemAdmin" ColumnName="IsSystemAdmin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RefreshTokenMinutes" ColumnName="RefreshTokenMinutes" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="InstagramUrl" ColumnName="InstagramUrl" />
+                <ScalarProperty Name="LinkedInUrl" ColumnName="LinkedInUrl" />
+                <ScalarProperty Name="TwitterUrl" ColumnName="TwitterUrl" />
+                <ScalarProperty Name="FacebookUrl" ColumnName="FacebookUrl" />
+                <ScalarProperty Name="AltPhoneNumber" ColumnName="AltPhoneNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ProfileImageStorageId" ColumnName="ProfileImageStorageId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountRefreshTokens">
+            <EntityTypeMapping TypeName="YooniteModel.AccountRefreshToken">
+              <MappingFragment StoreEntitySet="AccountRefreshToken">
+                <ScalarProperty Name="DateExpired" ColumnName="DateExpired" />
+                <ScalarProperty Name="DateIssued" ColumnName="DateIssued" />
+                <ScalarProperty Name="ProtectedTicket" ColumnName="ProtectedTicket" />
+                <ScalarProperty Name="RefreshToken" ColumnName="RefreshToken" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountSettingCrossLinks">
+            <EntityTypeMapping TypeName="YooniteModel.AccountSettingCrossLink">
+              <MappingFragment StoreEntitySet="AccountSettingCrossLink">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountSkillCrossLinks">
+            <EntityTypeMapping TypeName="YooniteModel.AccountSkillCrossLink">
+              <MappingFragment StoreEntitySet="AccountSkillCrossLink">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="YooniteModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ErrorLogs">
+            <EntityTypeMapping TypeName="YooniteModel.ErrorLog">
+              <MappingFragment StoreEntitySet="ErrorLog">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateReviwed" ColumnName="DateReviwed" />
+                <ScalarProperty Name="ReviewedComments" ColumnName="ReviewedComments" />
+                <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+                <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="InnerExceptionMessage" ColumnName="InnerExceptionMessage" />
+                <ScalarProperty Name="ExceptionMessage" ColumnName="ExceptionMessage" />
+                <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="HResult" ColumnName="HResult" />
+                <ScalarProperty Name="ReviewedByAccountId" ColumnName="ReviewedByAccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="YooniteModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UnRead" ColumnName="UnRead" />
+                <ScalarProperty Name="Message1" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ToAccountId" ColumnName="ToAccountId" />
+                <ScalarProperty Name="FromAccountId" ColumnName="FromAccountId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PasswordResets">
+            <EntityTypeMapping TypeName="YooniteModel.PasswordReset">
+              <MappingFragment StoreEntitySet="PasswordReset">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="YooniteModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CanBeRemote" ColumnName="CanBeRemote" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectImageStorageId" ColumnName="ProjectImageStorageId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectSkillCrossLinks">
+            <EntityTypeMapping TypeName="YooniteModel.ProjectSkillCrossLink">
+              <MappingFragment StoreEntitySet="ProjectSkillCrossLink">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="YooniteModel.Setting">
+              <MappingFragment StoreEntitySet="Setting">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="YooniteModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storages">
+            <EntityTypeMapping TypeName="YooniteModel.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FileSizeInBytes" ColumnName="FileSizeInBytes" />
+                <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="AzureStorageId" ColumnName="AzureStorageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

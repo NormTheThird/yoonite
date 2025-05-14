@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="400f6eca5af2405bb86149f1ac7e6361" Name="Diagram1">
+        <EntityTypeShape EntityType="YooniteModel.Account" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="YooniteModel.AccountRefreshToken" Width="1.5" PointX="5.25" PointY="18.75" />
+        <EntityTypeShape EntityType="YooniteModel.AccountSettingCrossLink" Width="1.5" PointX="8.25" PointY="13.375" />
+        <EntityTypeShape EntityType="YooniteModel.AccountSkillCrossLink" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="YooniteModel.Address" Width="1.5" PointX="0.75" PointY="12.875" />
+        <EntityTypeShape EntityType="YooniteModel.ErrorLog" Width="1.5" PointX="5.25" PointY="26.25" />
+        <EntityTypeShape EntityType="YooniteModel.Message" Width="1.5" PointX="5.25" PointY="21.875" />
+        <EntityTypeShape EntityType="YooniteModel.PasswordReset" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="YooniteModel.Project" Width="1.5" PointX="5.25" PointY="13.875" />
+        <EntityTypeShape EntityType="YooniteModel.ProjectSkillCrossLink" Width="1.5" PointX="7.5" PointY="16.875" />
+        <EntityTypeShape EntityType="YooniteModel.Setting" Width="1.5" PointX="6" PointY="1.375" />
+        <EntityTypeShape EntityType="YooniteModel.Skill" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="YooniteModel.Storage" Width="1.5" PointX="0.75" PointY="9.125" />
+        <AssociationConnector Association="YooniteModel.FK_Account_Address" />
+        <AssociationConnector Association="YooniteModel.FK_Account_ProfileImageStorage" />
+        <AssociationConnector Association="YooniteModel.FK_AccountRefreshToken_Account" />
+        <AssociationConnector Association="YooniteModel.FK_AccountSettingCrossLink_Account" />
+        <AssociationConnector Association="YooniteModel.FK_AccountSkillCrossLink_Account" />
+        <AssociationConnector Association="YooniteModel.FK_ErrorLog_ReviewedByAccount" />
+        <AssociationConnector Association="YooniteModel.FK_Message_FromAccount" />
+        <AssociationConnector Association="YooniteModel.FK_Message_ToAccount" />
+        <AssociationConnector Association="YooniteModel.FK_PasswordReset_Account" />
+        <AssociationConnector Association="YooniteModel.FK_Project_AccountId" />
+        <AssociationConnector Association="YooniteModel.FK_AccountSettingCrossLink_Setting" />
+        <AssociationConnector Association="YooniteModel.FK_AccountSkillCrossLink_Skill" />
+        <AssociationConnector Association="YooniteModel.FK_Message_ParentMessage" />
+        <AssociationConnector Association="YooniteModel.FK_ProjectSkillCrossLink_Account" />
+        <AssociationConnector Association="YooniteModel.FK_ProjectSkillCrossLink_Skill" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

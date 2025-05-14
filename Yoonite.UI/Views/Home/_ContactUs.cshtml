@@ -1,0 +1,33 @@
+﻿<div class="container mt-xl-5">
+    <h2>We’d love to hear from you!</h2>
+    <div class="contact-form-wrapper mb80">
+        <form id="contact-form" class="contact-form">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="contact-form-name">Name *</label>
+                        <input type="text" name="Name" id="contact-form-name" class="form-control" data-bind="value: ContactUsDataModel().Name">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="contact-form-subject">Subject *</label>
+                        <input type="text" name="Subject" id="contact-form-subject" class="form-control" data-bind="value: ContactUsDataModel().Subject">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="contact-form-email">E-mail *</label>
+                        <input type="email" name="Email" id="contact-form-email" class="form-control" data-bind="value: ContactUsDataModel().Email">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contact-form-message">Message *</label>
+                <textarea class="form-control" name="Message" id="contact-form-message" rows="3" data-bind="value: ContactUsDataModel().Message"></textarea>
+            </div>
+            <input type="button" class="btn btn-primary pull-right" value="Send Message" data-bind="click: ContactUs" />
+            <h4 class="text-danger" data-bind="visible: ContactUsDataModel().IsMessageSent, text: ContactUsDataModel().MessageSentText"></h4>
+        </form>
+    </div>
+</div>

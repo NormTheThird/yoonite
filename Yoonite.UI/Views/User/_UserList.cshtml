@@ -1,0 +1,81 @@
+﻿<div id="user-list" style="display:none">
+
+    <div class="page-title">
+        <div class="container">
+            <h1>Users</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Search -->
+            <div class="col-sm-4 col-md-3">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h3 class="widgettitle">Search Users</h3>
+                        <div class="search">
+                            <form method="get" action="?">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    <input type="text" class="form-control" placeholder="Search by name, skill, city or state..." data-bind="value: UsersFilter, valueUpdate: 'afterkeydown'">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List of users -->
+            <div class="col-sm-8 col-md-9">
+                <div class="content">
+                    <div class="row" data-bind="foreach: UsersPagination().PaginatedArray">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="listing-box">
+                                <div class="listing-box-inner">
+                                    <a href="#" class="listing-box-image" data-bind="click: $parent.GetUserDetail">
+                                        <span class="listing-box-image-content" data-bind="style: { 'background-image': ProfileImageStorageId() == null ? 'url(Content/img/placeholder.png)' : 'url(' + ProfileImageStorage().Image() + ')' }"></span>
+                                        @*<span class="listing-box-category tag">Courses</span>*@
+                                    </a>
+                                    <div class="listing-box-content">
+                                        <h2><a href="#" data-bind="text: FullName, click: $parent.GetUserDetail"></a></h2>
+                                        <h3 data-bind="text: Address().CityStateDisplay"></h3>
+                                        <div class="actions">
+                                            <div class="actions-button">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                            <ul class="actions-list">
+                                                <li><a href="#" data-bind="click: $parent.GetUserDetail">View Profile</a></li>
+                                                @*<li><a href="#">Add to favorites</a></li>
+                                            <li><a href="#">Report listing</a></li>*@
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="listing-box-attributes" data-bind="foreach: Skills">
+                                        <span class="tag tag-outline-primary" data-bind="text: Name"></span>
+                                    </div>
+                                    <div class="listing-box-attributes-icons">
+                                        <ul>
+                                            @*<li><i class="fa fa-check"></i> <span>0</span></li>*@
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @Html.Partial("_PaginationTemplate")
+                            <div data-bind="template: {name: 'PaginationTemplate', data: UsersPagination}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+﻿<div class="admin-header">
+    <div class="container-fluid">
+        <div class="admin-header-sidebar-toggle toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="@Url.Action("Index", "Home")" class="admin-page-title-back">
+            <i class="fa fa-long-arrow-left fa-2x"></i>
+        </a>
+        <div class="admin-header-avatar">
+            <span class="admin-header-avatar-name">@User.Identity.Name <i class="fa fa-chevron-down"></i></span>
+            <ul class="admin-header-avatar-menu">
+                <li><a href="@Url.Action("Index", "Home")">Back To Website</a></li>
+                <li><a href="@Url.Action("Logout", "Security")">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿# git ignore file
+
+/.vs
+/packages
+
+/Yoonite.API/bin
+/Yoonite.API/obj
+/Yoonite.Common/bin
+/Yoonite.Common/obj
+/Yoonite.Data/bin
+/Yoonite.Data/obj
+/Yoonite.Services/bin
+/Yoonite.Services/obj
+/Yoonite.UI/bin
+/Yoonite.UI/obj

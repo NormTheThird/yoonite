@@ -1,0 +1,60 @@
+﻿<div id="message-detail" style="display:none">
+    <div class="page-title">
+        <div class="container">
+            <h1>
+                <a href="#" data-bind="click: BackToMessageList" title="Back to message list" class="admin-page-title-back">
+                    <i class="fa fa-long-arrow-left fa-2x"></i>
+                </a>Message Detail
+            </h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="post-title">
+            <h2 data-bind="text: Message().Subject"></h2>
+        </div>
+
+        <div class="posts" data-bind="foreach: Message().ChildMessages">
+            <div class="post">
+                <div class="post-meta">
+                    <div class="post-meta-item">
+                        Message From <span data-bind="text:  MessageFrom()"></span>
+                    </div>
+                    <div class="post-meta-item">
+                        <i class="fa fa-calendar"></i><span data-bind="text: DateCreated()"></span>
+                    </div>
+                    <div class="post-meta-item">
+                        <span class="text-primary" data-bind="visible: UnRead()">Unread</span>
+                        <span class="text-secondary" data-bind="visible: !UnRead()">read</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p data-bind="text: Message()"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-inner">
+                <div class="box-title">
+                    <h2>Send Response Message</h2>
+                </div>
+                <form id="response-message-form">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea id="Message" name="Message" class="form-control" rows="10" placeholder="Please keep your message as simple as possible." data-bind="value: ResponseMessage().Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group-btn">
+                                <button class="btn btn-primary pull-right" data-bind="click: SendResponseMessage">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

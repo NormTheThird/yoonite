@@ -1,0 +1,68 @@
+﻿<div id="questions" data-bind="with: CurrentVM">
+    <div class="page-title">
+        <div class="container">
+            <h1>
+                Frequently Asked Questions
+            </h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="faq">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h2>What is Yoonite?</h2>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                A collaboration for like-minded individuals to get together and trade ideas or skills for partnerships. Have an 
+                                idea and not sure how to get it off the ground? Then come find people with skills that are looking to trade their time for equity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="col-sm-6">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h2>Nulla blandit eu eros nec ultrices?</h2>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit eu eros nec ultrices.
+                                Aliquam gravida dictum odio sed gravida. Nunc posuere imperdiet lectus, et rutrum arcu bibendum eu.
+                                Praesent vitae purus vulputate, mattis dolor non, euismod urna. Vivamus porta et urna ultricies commodo.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit eu eros nec ultrices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h2>Nulla blandit eu eros nec ultrices?</h2>
+                        </div>
+                        <div class="faq-answer">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla blandit eu eros nec ultrices. Aliquam gravida dictum odio sed gravida. Nunc posuere imperdiet lectus, et rutrum arcu bibendum eu. Praesent vitae purus vulputate, mattis dolor non, euismod urna. Vivamus porta et urna ultricies commodo.
+                            </p>
+                        </div>
+                    </div>
+                </div>*@
+
+   
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new QuestionsViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

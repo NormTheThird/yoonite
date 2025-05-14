@@ -1,0 +1,18 @@
+﻿<div class="main-wrapper" data-bind="with: CurrentVM()">
+    <div class="main">
+        <div class="main-inner">
+
+            @Html.Partial("_UserDetail")
+            @Html.Partial("_UserList")
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        MainVM.CurrentVM(new UserViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}
